@@ -28,6 +28,18 @@ public class Board {
 		this.boardLength = boardLength;
 		this.boardWidth = boardWidth;
 	}
+	
+	public boolean isTileEmpty(int x, int y)
+	{
+		for(Tile t: tileList)
+		{
+			if(t.getPositionX() == x && t.getPositionY() == y)
+			{
+				return false;
+			}
+		}
+		return true;
+	}
 
 	public int getBoardLength() {
 		return boardLength;
@@ -59,5 +71,6 @@ public class Board {
 	{
 		tileList.get(0).setPositionX(tileList.get(0).getPositionX() + 1);
 	}
+	
 	
 }
