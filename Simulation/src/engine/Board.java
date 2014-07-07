@@ -63,13 +63,16 @@ public class Board {
 	
 	public void generateTilesTest()
 	{
-		Tile t = new Tile(TileType.RED, 0,0);
+		Tile t = new Tile(TileType.BLUE, 0,0);
+		Tile t2 = new Tile(TileType.RED, 0,10);
 		tileList.add(t);
+		tileList.add(t2);
 	}
 	
 	public void incrementTileTest()
 	{
 		tileList.get(0).setPositionX(tileList.get(0).getPositionX() + 1);
+		tileList.get(1).setPositionX(tileList.get(1).getPositionX() + 1);
 	}
 	
 	

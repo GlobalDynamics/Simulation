@@ -22,6 +22,7 @@ import javax.swing.UIManager;
 import javax.swing.UnsupportedLookAndFeelException;
 
 import engine.Board;
+import engine.StringRectangle;
 import engine.Tile;
 
 public class Grid {
@@ -63,7 +64,7 @@ public class Grid {
     	GridPainter gp = new GridPainter();
         private int columnCount = b.getBoardWidth();
         private int rowCount = b.getBoardLength();
-        private List<Rectangle> cells;
+        private List<StringRectangle> cells;
         private Point selectedCell;
 
         public TestPane() throws Exception {
@@ -128,7 +129,7 @@ public class Grid {
             if (cells.isEmpty()) {
                 for (int row = 0; row < rowCount; row++) {
                     for (int col = 0; col < columnCount; col++) {
-                        Rectangle cell = new Rectangle(
+                    	StringRectangle cell = new StringRectangle("50",
                                 xOffset + (col * cellWidth),
                                 yOffset + (row * cellHeight),
                                 cellWidth,
@@ -140,8 +141,8 @@ public class Grid {
             for(Tile t: b.tileList)
             {
             	int index = t.getPositionX() + (t.getPositionY() * b.getBoardWidth());
-                 Rectangle cell = cells.get(index);
-            	 gp.updateGrid(g2d, cell, b.getBoardWidth(), t);
+                StringRectangle cell = cells.get(index);
+            	gp.updateGrid(g2d, cell, b.getBoardWidth(), t);
             }
             	
            

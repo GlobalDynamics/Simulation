@@ -17,10 +17,10 @@ public class Tile {
 	{
 		int boardEndPointX = b.getBoardWidth();
 		int boardEndPointY = b.getBoardLength();
-		int leftTile = this.positionX +1;
-		if(leftTile > boardEndPointX)
+		int leftTile = this.positionX -1;
+		if(leftTile < 0)
 		{
-			return TileState.END;
+			return TileState.X_START;
 		}
 		else if(!b.isTileEmpty(leftTile, this.positionY))
 		{
@@ -35,19 +35,75 @@ public class Tile {
 			//Best not to go at all
 			return TileState.FILLED;
 		}
-		
 	}
-	public void getRight()
+	public TileState getRightState()
 	{
-		
+		int boardEndPointX = b.getBoardWidth();
+		int boardEndPointY = b.getBoardLength();
+		int rightTile = this.positionX +1;
+		if(rightTile > boardEndPointX)
+		{
+			return TileState.X_END;
+		}
+		else if(!b.isTileEmpty(rightTile, this.positionY))
+		{
+			return TileState.FILLED;
+		}
+		else if(b.isTileEmpty(rightTile, this.positionY))
+		{
+			return TileState.EMPTY;
+		}
+		else
+		{
+			//Best not to go at all
+			return TileState.FILLED;
+		}
 	}
-	public void getTop()
+	public TileState getTopState()
 	{
-		
+		int boardEndPointX = b.getBoardWidth();
+		int boardEndPointY = b.getBoardLength();
+		int topTile = this.positionY +1;
+		if(topTile > boardEndPointX)
+		{
+			return TileState.Y_END;
+		}
+		else if(!b.isTileEmpty(topTile, this.positionY))
+		{
+			return TileState.FILLED;
+		}
+		else if(b.isTileEmpty(topTile, this.positionY))
+		{
+			return TileState.EMPTY;
+		}
+		else
+		{
+			//Best not to go at all
+			return TileState.FILLED;
+		}
 	}
-	public void getBottom()
+	public TileState getBottomState()
 	{
-		
+		int boardEndPointX = b.getBoardWidth();
+		int boardEndPointY = b.getBoardLength();
+		int bottomTile = this.positionY -1;
+		if(bottomTile < 0)
+		{
+			return TileState.Y_START;
+		}
+		else if(!b.isTileEmpty(bottomTile, this.positionY))
+		{
+			return TileState.FILLED;
+		}
+		else if(b.isTileEmpty(bottomTile, this.positionY))
+		{
+			return TileState.EMPTY;
+		}
+		else
+		{
+			//Best not to go at all
+			return TileState.FILLED;
+		}
 	}
 	
 	
