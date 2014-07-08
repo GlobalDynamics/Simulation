@@ -2,8 +2,11 @@ package intelligence;
 
 import java.util.HashMap;
 import java.util.Map;
+import java.util.TreeMap;
 
+import engine.Action;
 import engine.Tile;
+import engine.TileDirection;
 import engine.TileState;
 
 public class AverageBot {
@@ -24,12 +27,13 @@ public class AverageBot {
 	
 	private Tile tile;
 	
-	public void nextAction()
+	public Action nextAction()
 	{
 		if(emptyFirstLevel())
 		{
 			if(tile.getB().tileList.size() > 0)
 			{
+				TileDirection direction=tile.getDirection(tile,getClosestBot());
 				
 			}
 			else
@@ -56,13 +60,17 @@ public class AverageBot {
 		Map<Double, Tile> distanceList = new HashMap<Double, Tile>();
 		for(Tile t: tile.getB().tileList)
 		{
-			double x1 = tile.getPositionX();
-			double x2 = t.getPositionX();
-			double y1 = tile.getPositionY();
-			double y2 = t.getPositionY();
-			distanceList.put(Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)), tile);
+			if(!t.equals(tile))
+			{
+				double x1 = tile.getPositionX();
+				double x2 = t.getPositionX();
+				double y1 = tile.getPositionY();
+				double y2 = t.getPositionY();
+				distanceList.put(Math.sqrt((x1-x2)*(x1-x2) + (y1-y2)*(y1-y2)), tile);
+			}
 		}
-		Map<String, String> sortedDistances = new TreeMap<String, String>(unsortMap);
+		TreeMap<Double, Tile> sortedDistances = new TreeMap<Double, Tile>(distanceList);
+		return sortedDistances.firstEntry().getValue();
 	}
 	
 	public Tile getTile() {

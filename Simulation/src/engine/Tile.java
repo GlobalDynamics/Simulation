@@ -13,6 +13,35 @@ public class Tile {
 		this.tileType = tileType;
 	}
 	
+    public double GetAngleOfLineBetweenTwoPoints(Tile p1, Tile p2)
+    {
+        double xDiff = p2.getPositionX() - p1.getPositionX();
+        double yDiff = p2.getPositionY() - p1.getPositionY();
+        return Math.toDegrees(Math.atan2(yDiff, xDiff));
+    }
+    
+    public TileDirection getDirection(Tile p1, Tile p2)
+    {
+    	double angle = GetAngleOfLineBetweenTwoPoints(p1, p2);
+    	if(angle >= 0 && angle <90)
+    	{
+    		return TileDirection.UP;
+    	}
+    	else if(angle >= 90 && angle <180)
+    	{
+    		return TileDirection.RIGHT;
+    	}
+    	else if(angle >= 180 && angle <270)
+    	{
+    		return TileDirection.DOWN;
+    	}
+    	else if(angle >= 270 && angle <360)
+    	{
+    		return TileDirection.LEFT;
+    	}
+		return TileDirection.NONE;
+    }
+	
 	public TileState getLeftState()
 	{
 		int boardEndPointX = b.getBoardWidth();
